@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Frame, withSounds, withStyles } from "arwes";
 
 import usePlanets from "../hooks/usePlanets";
@@ -62,34 +62,50 @@ const AppLayout = (props) => {
         >
           {(anim) => (
             <div style={{ padding: "20px" }}>
-              <Switch>
-                <Route exact path="/">
-                  <Launch
-                    entered={anim.entered}
-                    planets={planets}
-                    submitLaunch={submitLaunch}
-                    isPendingLaunch={isPendingLaunch}
-                  />
-                </Route>
-                <Route exact path="/launch">
-                  <Launch
-                    entered={anim.entered}
-                    planets={planets}
-                    submitLaunch={submitLaunch}
-                    isPendingLaunch={isPendingLaunch}
-                  />
-                </Route>
-                <Route exact path="/upcoming">
-                  <Upcoming
-                    entered={anim.entered}
-                    launches={launches}
-                    abortLaunch={abortLaunch}
-                  />
-                </Route>
-                <Route exact path="/history">
-                  <History entered={anim.entered} launches={launches} />
-                </Route>
-              </Switch>
+              <Routes>
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <Launch
+                      entered={anim.entered}
+                      planets={planets}
+                      submitLaunch={submitLaunch}
+                      isPendingLaunch={isPendingLaunch}
+                    />
+                  }
+                />
+                <Route
+                  exact
+                  path="/launch"
+                  element={
+                    <Launch
+                      entered={anim.entered}
+                      planets={planets}
+                      submitLaunch={submitLaunch}
+                      isPendingLaunch={isPendingLaunch}
+                    />
+                  }
+                />
+                <Route
+                  exact
+                  path="/upcoming"
+                  element={
+                    <Upcoming
+                      entered={anim.entered}
+                      launches={launches}
+                      abortLaunch={abortLaunch}
+                    />
+                  }
+                />
+                <Route
+                  exact
+                  path="/history"
+                  element={
+                    <History entered={anim.entered} launches={launches} />
+                  }
+                />
+              </Routes>
             </div>
           )}
         </Frame>
