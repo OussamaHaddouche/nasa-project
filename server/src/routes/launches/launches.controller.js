@@ -11,12 +11,12 @@ function httpGetAllLaunches(req, res) {
 
 function httpAddNewLaunch(req, res) {
   const launch = req.body;
-  launch.launchDate = new Date(launch.launchDate);
   if (Object.values(launch).length !== 4) {
     return res.status(400).json({
       error: "Missing required properties",
     });
   }
+  launch.launchDate = new Date(launch.launchDate);
   if (isNaN(launch.launchDate)) {
     return res.status(400).json({
       error: "invalid launch Date",
